@@ -4,8 +4,6 @@ from selenium.webdriver.chrome.service import Service
 from BaseClass import BaseClass
 from PageObject import VideoPlayer
 
-
-
 # service=Service('C:\\Users\\Lenovo\\Desktop\\indee\\IndeeDemo\\chromedriver.exe')
 #we are setting up Fixture for setup  , here our webdriver is getting initialise
 @pytest.fixture(scope='class')
