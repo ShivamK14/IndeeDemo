@@ -9,7 +9,30 @@ pipeline{
                 pytest ./test_jenkins.py -s -v
                 '''
       }
+      post{
+        failure{
+          echo "test Failed ! stoping build process"
+          error "test did not passed"
+        }
+      }
     }
+    stage("build"){
+      steps{
+        echo "we are building here"
+      }
+    }
+
   
+}
+
+
+post {
+  success {
+    echo "pipeline build successfully"
+
+  }
+  failure{
+    echo "pipeline Failed"
+  }
 }
 }
