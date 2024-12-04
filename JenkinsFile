@@ -4,7 +4,7 @@ pipeline{
     stage("install"){
       steps{
           sh '''
-          apt-get install python3-selenium python3-pytest
+          sudo apt-get install python3-selenium python3-pytest
           '''
           echo 'installed pytest,selenium'
       }
