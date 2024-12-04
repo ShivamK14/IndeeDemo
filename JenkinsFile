@@ -6,11 +6,12 @@ pipeline{
         git credentialsId: '388f07c5-0003-4a07-8bc4-a49a739a3550', url: 'https://github.com/ShivamK14/IndeeDemo.git'
         sh "git clone https://github.com/ShivamK14/IndeeDemo.git"
       }
-      stage("test"){
-        steps{
+      }
+    stage("test"){
+      steps{
           echo "we have pulled from jenkins"
       }
     }
-  }
+  
 }
 }
