@@ -6,7 +6,7 @@ pipeline{
           sh '''find . -type d -name "__pycache__" -exec rm -r {} +
                 find . -type f -name "*.pyc" -delete
                 cd tests
-                pytest test_jenkins -s -v
+                pytest ./test_jenkins.py -s -v
                 '''
       }
     }
