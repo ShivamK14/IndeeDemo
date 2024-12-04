@@ -6,6 +6,11 @@ pipeline{
           echo "we have pulled from jenkins"
       }
     }
+    stage("test2"){
+      steps{
+          echo "for polling"
+      }
+    }
   
 }
 }
