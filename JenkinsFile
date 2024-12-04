@@ -4,7 +4,9 @@ pipeline{
     
     stage("test"){
       steps{
-          sh 'pytest -v -s'
+          sh '''find . -type d -name "__pycache__" -exec rm -r {} +
+                find . -type f -name "*.pyc" -delete
+                pytest -v -s'''
       }
     }
   
