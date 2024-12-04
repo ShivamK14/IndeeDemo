@@ -1,14 +1,7 @@
 pipeline{
   agent any
   stages{
-    stage("install"){
-      steps{
-          sh '''
-          sudo apt-get install python3-selenium python3-pytest
-          '''
-          echo 'installed pytest,selenium'
-      }
-    }
+    
     stage("test"){
       steps{
           sh 'pytest -v -s'
