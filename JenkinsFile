@@ -1,14 +1,17 @@
 pipeline{
   agent any
   stages{
-    stage("test"){
+    stage("install"){
       steps{
-          echo "we have pulled from jenkins"
+          sh '''
+          apt-get install python3-selenium python3-pytest
+          '''
+          echo 'installed pytest,selenium'
       }
     }
-    stage("test2"){
+    stage("test"){
       steps{
-          echo "for polling"
+          sh 'pytest -v -s'
       }
     }
   
