@@ -1,12 +1,6 @@
 pipeline{
   agent any
   stages{
-    stage('Clean Workspace') {
-    steps {
-        deleteDir()
-    }
-}
-
     stage("test"){
       steps{
           sh '''find . -type d -name "__pycache__" -exec rm -r {} +
