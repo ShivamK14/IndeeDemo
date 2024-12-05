@@ -1,6 +1,13 @@
 pipeline{
   agent any
   stages{
+
+    stage ("install dependencies"){
+      steps{
+        echo "installing Dependencies"
+        sh 'sudo apt install requirements.txt'
+      }
+    }
     stage("test"){
       steps{
           sh '''find . -type d -name "__pycache__" -exec rm -r {} +
@@ -12,11 +19,17 @@ pipeline{
       post{
         failure{
           echo "test Failed ! stoping build process"
-          error "test did not passed"
+          error "test Failure"
         }
       }
     }
     stage("build"){
+       when {
+                // Only run the build stage if tests pass
+                expression {
+                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
+                }
+            }
       steps{
         echo "we are building here"
       }
