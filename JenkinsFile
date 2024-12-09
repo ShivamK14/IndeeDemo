@@ -16,8 +16,9 @@ pipeline{
     }
     stage("build"){
       when {
+        expression{
         currenBuild.result ==null || currentBuild.result=="success"
-      }
+      }}
       steps{
         echo "we are building here"
       }
