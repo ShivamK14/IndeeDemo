@@ -1,50 +1,37 @@
 pipeline{
   agent any
-  stages{
 
-    stage ("install dependencies"){
-      steps{
-        echo "installing Dependencies"
-      }
-    }
+  stages{
+    
     stage("test"){
       steps{
-          sh '''find . -type d -name "__pycache__" -exec rm -r {} +
-                find . -type f -name "*.pyc" -delete
-                cd tests
-                pytest ./test_jenkins.py -s -v
-                '''
+        sh "pytest -s -v ./tests/test_jenkins.py"
       }
       post{
         failure{
-          echo "test Failed ! stoping build process"
+          echo "test failed stopping build"
           error "test Failure"
         }
       }
     }
     stage("build"){
-       when {
-                // Only run the build stage if tests pass
-                expression {
-                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
-                }
-            }
+      when {
+        currenBuild.result ==null || currentBuild.result=="success"
+      }
       steps{
         echo "we are building here"
       }
     }
-
-  
-}
-
-
-post {
-  success {
-    echo "pipeline build successfully"
-
   }
-  failure{
-    echo "pipeline Failed"
+
+
+  post{
+    success{
+      echo "pipeline passed"
+
+    }
+    failure{
+      echo "pipeline failed"
+    }
   }
-}
 }
